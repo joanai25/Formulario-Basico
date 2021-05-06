@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="jquery.maxlength.css">
+    <script type="text/javascript" src="jquery.plugin.js"></script>
+    <script type="text/javascript" src="jquery.maxlength.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <form>
+                    <div class="form-group">
+                      <label for="formGroupExampleInput">Nombre:</label>
+                      <input type="text" class="form-control" id="nombre">
+                    </div>
+                    <p id="err_nombre"></p>
+                    <div class="form-group">
+                      <label for="formGroupExampleInput2">Telefono:</label>
+                      <input type="text" class="form-control" id="telefono" onkeypress="return solo_numeros(event);">
+                    </div>
+                    Sexo:
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sexo" id="inlineRadio1" value="option1">
+                        <label class="form-check-label" for="inlineRadio1">Hombre</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                          
+                        <input class="form-check-input" type="radio" name="sexo" id="inlineRadio2" value="option2">
+                        <label class="form-check-label" for="inlineRadio2">Mujer</label>
+                      </div>
+                      <p id="err_sexo"></p>
+                      
+                      Vehiculo favorito:
+                      
+                      <select class="form-control" id="opciones">
+                        <option value="1"></option>
+                        <option value="2">Coche</option>
+                        <option value="2">Moto</option>
+                        <option value="3">Bicicleta</option>
+                        <option value="4">Patin electrico</option>
+                      </select>
+
+                      <p id="err_lista"></p>
+                      Aficiones:
+                      <div class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" id="futbol" name="check">
+                        <label class="form-check-label" for="futbol">Futbol</label>
+                        <div style="margin-right: 25px;"></div>
+                        <input type="checkbox" class="form-check-input" id="baloncesto" name="check">
+                        <label class="form-check-label" for="baloncesto">Baloncesto</label>
+                        <div style="margin-right: 25px;"></div>
+                        <input type="checkbox" class="form-check-input" id="tenis" name="check">
+                        <label class="form-check-label" for="tenis">Tenis</label>
+                        <div style="margin-right: 25px;"></div>
+                        <input type="checkbox" class="form-check-input" id="motos" name="check">
+                        <label class="form-check-label" for="motos">Motociclismo</label>
+                        <div style="margin-right: 25px;"></div>
+                        <input type="checkbox" class="form-check-input" id="hokey" name="check">
+                        <label class="form-check-label" for="hokey">Hockey</label>
+                        <div style="margin-right: 25px;"></div>
+                        <input type="checkbox" class="form-check-input" id="sport" name="check">
+                        <label class="form-check-label" for="sport">Sport Games</label>
+                      </div>
+                      <p id="err_check"></p>
+                      <div style="margin-top: 25px;">
+                          <button type="button" class="btn-primary" id="enviar" onclick="validar_nombre(), validar_sexo(), validar_lista(), validar_check()">Enviar</button>
+                      </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function validar_nombre()
+        {
+            var nom = document.getElementById("nombre").value;
+            var mensaje = document.getElementById("err_nombre");
+            if(nom.length < 5)
+            {
+                mensaje.innerHTML = "El nombre debe de tener mas de 5 caracteres";
+            }
+            
+        }
+
+        $("#nombre").maxlength({max: 50});
+  
+
+        
+        
+            $('#telefono').on('keydown keypress',function(e){
+    if(e.key.length === 1){ // Evaluar si es un solo caracter
+        if($(this).val().length < 9 && !isNaN(parseFloat(e.key))){ /* Comprobar que
+                                                                     * son menos de 9
+                                                                     * catacteres y que
+                                                                     * es un número */
+            $(this).val($(this).val() + e.key); // Muestra el valor en el input
+            /*
+             * Aquí haces lo que quieras.
+             */
+        }
+        return false;
+    }
+});
+        
+
+         function solo_numeros(e)
+            {
+            var keynum = window.event ? window.event.keyCode : e.which;
+            if ((keynum == 8) || (keynum == 46))
+            return true;
+            
+            return /\d/.test(String.fromCharCode(keynum));
+            }
+                
+        function validar_sexo()
+        {
+            sexo = document.getElementById("err_sexo");
+            if(!document.querySelector('input[name="sexo"]:checked'))
+             {
+                sexo.innerHTML = "Debe seleccionar un elemento del campo sexo";
+            hasError = true;
+            }
+        }
+
+        function validar_lista()
+        {
+            var lista = document.getElementById("err_lista");
+            var indice = document.getElementById("opciones").selectedIndex;
+            if( indice == null || indice == 0 )
+            {
+                lista.innerHTML = "Seleccione un vehiculo favorito";
+                return false;
+            }
+
+        }
+
+        var veces = 0;
+        function validar_check()
+        {
+            var mensaje = document.getElementById("err_check");
+            var todos = document.getElementsByName("check");
+            for(var i = 0; i < todos.length; i++)
+            {
+                if(todos[i].checked)
+                {
+                    
+                    veces= veces +1;
+                    if(veces >=3)
+                    {
+                        mensaje.innerHTML = "Seleccione minimo 1 aficion y maximo 3";
+                    }
+                    return true;
+                }
+            }
+            mensaje.innerHTML = "Seleccione minimo 1 aficion y maximo 3";
+            return false;
+
+        }
+        
+
+
+           
+        
+    </script>
+</body>
+</html>
